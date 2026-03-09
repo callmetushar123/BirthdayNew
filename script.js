@@ -941,4 +941,92 @@ document.addEventListener('DOMContentLoaded', () => {
     // And one after 5 seconds for first impression
     setTimeout(spawnRandomFortune, 5000);
 
+    // ============ 🐰 HOPPING RABBITS ============
+    const rabbitSVGs = [
+        // Bunny facing right
+        `<svg viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.35">
+                <ellipse cx="20" cy="22" rx="12" ry="8" fill="#D4B5A0" stroke="#B8977D" stroke-width="0.8"/>
+                <circle cx="28" cy="18" r="5" fill="#D4B5A0" stroke="#B8977D" stroke-width="0.8"/>
+                <ellipse cx="26" cy="9" rx="2" ry="6" fill="#D4B5A0" stroke="#B8977D" stroke-width="0.8"/>
+                <ellipse cx="30" cy="10" rx="2" ry="5.5" fill="#D4B5A0" stroke="#B8977D" stroke-width="0.8"/>
+                <ellipse cx="26.5" cy="10" rx="1" ry="3.5" fill="#E8C9B8"/>
+                <ellipse cx="30.5" cy="11" rx="1" ry="3" fill="#E8C9B8"/>
+                <circle cx="30" cy="17" r="1" fill="#5A3D4A"/>
+                <ellipse cx="32" cy="19" rx="0.5" ry="0.3" fill="#B76E79"/>
+                <circle cx="8" cy="24" r="3.5" fill="#D4B5A0" stroke="#B8977D" stroke-width="0.8"/>
+            </g>
+        </svg>`,
+        // Bunny facing left
+        `<svg viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.35">
+                <ellipse cx="20" cy="22" rx="12" ry="8" fill="#C9B1C9" stroke="#A890A8" stroke-width="0.8"/>
+                <circle cx="12" cy="18" r="5" fill="#C9B1C9" stroke="#A890A8" stroke-width="0.8"/>
+                <ellipse cx="14" cy="9" rx="2" ry="6" fill="#C9B1C9" stroke="#A890A8" stroke-width="0.8"/>
+                <ellipse cx="10" cy="10" rx="2" ry="5.5" fill="#C9B1C9" stroke="#A890A8" stroke-width="0.8"/>
+                <ellipse cx="13.5" cy="10" rx="1" ry="3.5" fill="#DBC4DB"/>
+                <ellipse cx="9.5" cy="11" rx="1" ry="3" fill="#DBC4DB"/>
+                <circle cx="10" cy="17" r="1" fill="#5A3D4A"/>
+                <ellipse cx="8" cy="19" rx="0.5" ry="0.3" fill="#B76E79"/>
+                <circle cx="32" cy="24" r="3.5" fill="#C9B1C9" stroke="#A890A8" stroke-width="0.8"/>
+            </g>
+        </svg>`,
+        // Small white bunny facing right
+        `<svg viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.3">
+                <ellipse cx="18" cy="19" rx="10" ry="6.5" fill="#E8DDD4" stroke="#C9B8A8" stroke-width="0.8"/>
+                <circle cx="25" cy="15.5" r="4" fill="#E8DDD4" stroke="#C9B8A8" stroke-width="0.8"/>
+                <ellipse cx="23.5" cy="8" rx="1.8" ry="5" fill="#E8DDD4" stroke="#C9B8A8" stroke-width="0.7"/>
+                <ellipse cx="27" cy="8.5" rx="1.8" ry="4.5" fill="#E8DDD4" stroke="#C9B8A8" stroke-width="0.7"/>
+                <ellipse cx="24" cy="9" rx="0.8" ry="3" fill="#F0D4D8"/>
+                <ellipse cx="27.5" cy="9.5" rx="0.8" ry="2.5" fill="#F0D4D8"/>
+                <circle cx="27" cy="14.5" r="0.8" fill="#5A3D4A"/>
+                <circle cx="7" cy="21" r="3" fill="#E8DDD4" stroke="#C9B8A8" stroke-width="0.8"/>
+            </g>
+        </svg>`
+    ];
+
+    function spawnRabbit() {
+        const rabbit = document.createElement('div');
+        rabbit.className = 'hopping-rabbit';
+
+        // Random direction
+        const goingRight = Math.random() > 0.5;
+        // Pick appropriate SVG (0 faces right, 1 faces left, 2 faces right)
+        const svgIndex = goingRight ? (Math.random() > 0.5 ? 0 : 2) : 1;
+        rabbit.innerHTML = rabbitSVGs[svgIndex];
+
+        // Random size
+        const size = 28 + Math.random() * 20;
+        // Random vertical position (lower 60% of the viewport)
+        const topPos = 40 + Math.random() * 50;
+        // Animation duration (how fast the rabbit crosses the screen)
+        const duration = 8 + Math.random() * 6;
+        // Hop height variation
+        const hopHeight = 8 + Math.random() * 12;
+
+        rabbit.style.cssText = `
+            width: ${size}px;
+            top: ${topPos}%;
+            --hop-height: ${hopHeight}px;
+            animation-duration: ${duration}s;
+        `;
+
+        if (goingRight) {
+            rabbit.classList.add('hop-right');
+        } else {
+            rabbit.classList.add('hop-left');
+        }
+
+        document.body.appendChild(rabbit);
+        setTimeout(() => rabbit.remove(), duration * 1000 + 500);
+    }
+
+    // Spawn rabbits periodically
+    setInterval(spawnRabbit, 7000 + Math.random() * 5000);
+    // First rabbit after 3 seconds
+    setTimeout(spawnRabbit, 3000);
+    // Second rabbit after 6 seconds
+    setTimeout(spawnRabbit, 6000);
+
 });
