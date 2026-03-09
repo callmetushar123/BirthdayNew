@@ -589,30 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ============ 💕 LOVE COUNTER ============
-    function updateLoveCounter() {
-        const startDate = new Date('2024-01-01'); // Placeholder — user can change this
-        const now = new Date();
-        const diff = now - startDate;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        const counterDays = document.getElementById('counter-days');
-        const counterHours = document.getElementById('counter-hours');
-        const counterMinutes = document.getElementById('counter-minutes');
-        const counterSeconds = document.getElementById('counter-seconds');
-
-        if (counterDays) {
-            counterDays.textContent = days.toLocaleString();
-            counterHours.textContent = String(hours).padStart(2, '0');
-            counterMinutes.textContent = String(minutes).padStart(2, '0');
-            counterSeconds.textContent = String(seconds).padStart(2, '0');
-        }
-    }
-    updateLoveCounter();
-    setInterval(updateLoveCounter, 1000);
 
     // ============ 🎵 AMBIENT MUSIC TOGGLE ============
     const musicToggle = document.getElementById('music-toggle');
