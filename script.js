@@ -910,36 +910,54 @@ document.addEventListener('DOMContentLoaded', () => {
         renderQuestion();
     }
 
-    // ============ 🌈 FLOATING LOVE FORTUNE ============
-    const fortuneMessages = [
-        "💕 You are deeply loved today and always",
-        "🌸 Something beautiful is about to happen",
-        "✨ You radiate pure magic wherever you go",
-        "🌹 The universe planned us perfectly",
-        "💜 Your smile is my favorite thing",
-        "🦋 Today is going to be extraordinary",
-        "🌻 You deserve all the flowers in the world",
-        "💗 I'm so grateful the stars aligned for us"
+    // ============ 🎈 FLOATING BALLOONS ============
+    const balloonMessages = [
+        "💕", "Love You", "🌸", "HBD!", "✨",
+        "🎂", "My Love", "🎈", "Forever", "🌹",
+        "Be Happy", "🦋", "Smile!", "💗", "🎉",
+        "You & Me", "🌻", "Muah!", "💜", "🎁"
     ];
 
-    let lastFortuneTime = 0;
-    function spawnRandomFortune() {
-        const now = Date.now();
-        if (now - lastFortuneTime < 15000) return;
-        lastFortuneTime = now;
+    const balloonColors = [
+        { bg: 'rgba(240, 180, 190, 0.85)', border: 'rgba(200, 130, 145, 0.5)' },
+        { bg: 'rgba(200, 180, 220, 0.85)', border: 'rgba(160, 140, 190, 0.5)' },
+        { bg: 'rgba(180, 210, 230, 0.85)', border: 'rgba(140, 175, 200, 0.5)' },
+        { bg: 'rgba(220, 200, 170, 0.85)', border: 'rgba(190, 165, 130, 0.5)' },
+        { bg: 'rgba(200, 220, 190, 0.85)', border: 'rgba(160, 185, 150, 0.5)' },
+        { bg: 'rgba(240, 200, 200, 0.85)', border: 'rgba(210, 160, 165, 0.5)' },
+    ];
 
-        const fortune = document.createElement('div');
-        fortune.className = 'floating-fortune';
-        fortune.textContent = fortuneMessages[Math.floor(Math.random() * fortuneMessages.length)];
-        fortune.style.left = (10 + Math.random() * 80) + 'vw';
-        document.body.appendChild(fortune);
-        setTimeout(() => fortune.remove(), 8000);
+    let lastBalloonTime = 0;
+    function spawnBalloon() {
+        const now = Date.now();
+        if (now - lastBalloonTime < 12000) return;
+        lastBalloonTime = now;
+
+        const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+        const msg = balloonMessages[Math.floor(Math.random() * balloonMessages.length)];
+        const sway = -15 + Math.random() * 30;
+        const size = 0.85 + Math.random() * 0.35;
+
+        const balloon = document.createElement('div');
+        balloon.className = 'floating-balloon';
+        balloon.style.left = (10 + Math.random() * 75) + 'vw';
+        balloon.style.setProperty('--sway', sway + 'px');
+        balloon.style.setProperty('--balloon-bg', color.bg);
+        balloon.style.setProperty('--balloon-border', color.border);
+        balloon.style.transform = `scale(${size})`;
+        balloon.innerHTML = `
+            <div class="balloon-body">${msg}</div>
+            <div class="balloon-tail"></div>
+            <div class="balloon-string"></div>
+        `;
+        document.body.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 10000);
     }
 
-    // Spawn a fortune every 20 seconds
-    setInterval(spawnRandomFortune, 20000);
-    // And one after 5 seconds for first impression
-    setTimeout(spawnRandomFortune, 5000);
+    // Spawn a balloon every 15 seconds
+    setInterval(spawnBalloon, 15000);
+    // And one after 4 seconds for first impression
+    setTimeout(spawnBalloon, 4000);
 
     // ============ 🐰 HOPPING RABBITS ============
     const rabbitSVGs = [

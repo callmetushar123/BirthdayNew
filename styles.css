@@ -1664,43 +1664,111 @@ button,
 }
 
 /* ===== FLOATING FORTUNE ===== */
-.floating-fortune {
+/* ===== FLOATING BALLOONS ===== */
+.floating-balloon {
     position: fixed;
-    bottom: -50px;
+    bottom: -120px;
     z-index: 9990;
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.1rem;
-    color: #B76E79;
-    background: rgba(255, 248, 245, 0.92);
-    padding: 12px 24px;
-    border-radius: 50px;
-    border: 1px solid rgba(183, 110, 121, 0.15);
-    box-shadow: 0 4px 20px rgba(183, 110, 121, 0.1);
     pointer-events: none;
-    animation: fortuneFloat 8s ease-out forwards;
-    white-space: nowrap;
+    animation: balloonFloat 10s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-@keyframes fortuneFloat {
+.balloon-body {
+    width: 60px;
+    height: 72px;
+    border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+    background: var(--balloon-bg, rgba(240, 180, 190, 0.85));
+    border: 1.5px solid var(--balloon-border, rgba(200, 130, 145, 0.4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(80, 50, 60, 0.8);
+    text-align: center;
+    padding: 8px 6px;
+    position: relative;
+    box-shadow: inset -6px -4px 12px rgba(255, 255, 255, 0.35),
+        0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Balloon shine */
+.balloon-body::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    width: 12px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(-30deg);
+}
+
+.balloon-tail {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--balloon-border, rgba(200, 130, 145, 0.5));
+    margin-top: -1px;
+}
+
+.balloon-string {
+    width: 1px;
+    height: 30px;
+    background: rgba(150, 120, 130, 0.3);
+    position: relative;
+}
+
+.balloon-string::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(150, 120, 130, 0.2);
+}
+
+@keyframes balloonFloat {
     0% {
-        bottom: -50px;
+        bottom: -120px;
         opacity: 0;
-        transform: translateX(-50%) scale(0.8);
+        transform: translateX(-50%) translateX(var(--sway, 0px)) scale(var(--scale, 1));
     }
 
-    10% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1);
+    8% {
+        opacity: 0.9;
     }
 
-    70% {
-        opacity: 1;
+    20% {
+        transform: translateX(-50%) translateX(calc(var(--sway, 0px) * -0.5)) scale(var(--scale, 1));
+    }
+
+    40% {
+        transform: translateX(-50%) translateX(var(--sway, 0px)) scale(var(--scale, 1));
+    }
+
+    60% {
+        transform: translateX(-50%) translateX(calc(var(--sway, 0px) * -0.8)) scale(var(--scale, 1));
+        opacity: 0.85;
+    }
+
+    80% {
+        transform: translateX(-50%) translateX(calc(var(--sway, 0px) * 0.6)) scale(var(--scale, 1));
+        opacity: 0.5;
     }
 
     100% {
-        bottom: 60vh;
+        bottom: 105vh;
         opacity: 0;
-        transform: translateX(-50%) scale(0.9);
+        transform: translateX(-50%) translateX(var(--sway, 0px)) scale(var(--scale, 1));
     }
 }
 
