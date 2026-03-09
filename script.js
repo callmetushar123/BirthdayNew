@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============ 🌻 CLICK TO PLANT A FLOWER ============
     const flowerSVGs = [
         `<svg viewBox="0 0 40 70"><g stroke="#B76E79" fill="none" stroke-width="1" stroke-linecap="round"><path d="M20,24 C18,21 15,19 17,16 C20,14 23,16 22,19"/><path d="M20,24 C15,28 9,28 7,22 C5,16 11,12 17,16" fill="rgba(240,212,216,0.2)"/><path d="M20,24 C25,28 31,28 33,22 C35,16 29,12 23,16" fill="rgba(240,212,216,0.2)"/><path d="M20,28 L20,62" stroke="#5A8A5A"/><path d="M20,40 C14,34 8,34 10,38" stroke="#5A8A5A" fill="rgba(143,188,143,0.1)"/></g></svg>`,
-        `<svg viewBox="0 0 40 70"><g stroke="#DAA520" fill="none" stroke-width="1" stroke-linecap="round"><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(0,20,22)" fill="rgba(218,165,32,0.12)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(30,20,22)" fill="rgba(240,212,216,0.08)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(60,20,22)" fill="rgba(218,165,32,0.12)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(90,20,22)" fill="rgba(240,212,216,0.08)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(120,20,22)" fill="rgba(218,165,32,0.12)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(150,20,22)" fill="rgba(240,212,216,0.08)"/><circle cx="20" cy="22" r="7" fill="rgba(139,69,19,0.15)" stroke="#8B4513"/><path d="M20,29 L20,62" stroke="#5A8A5A"/></g></svg>`,
+        `<svg viewBox="0 -10 40 80"><g stroke="#DAA520" fill="none" stroke-width="1" stroke-linecap="round"><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(0,20,22)" fill="rgba(218,165,32,0.12)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(30,20,22)" fill="rgba(240,212,216,0.08)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(60,20,22)" fill="rgba(218,165,32,0.12)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(90,20,22)" fill="rgba(240,212,216,0.08)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(120,20,22)" fill="rgba(218,165,32,0.12)"/><ellipse cx="20" cy="10" rx="4" ry="10" transform="rotate(150,20,22)" fill="rgba(240,212,216,0.08)"/><circle cx="20" cy="22" r="7" fill="rgba(139,69,19,0.15)" stroke="#8B4513"/><path d="M20,29 L20,62" stroke="#5A8A5A"/></g></svg>`,
         `<svg viewBox="0 0 40 70"><g stroke="#B8A9C9" fill="none" stroke-width="1" stroke-linecap="round"><ellipse cx="20" cy="10" rx="3.5" ry="9" transform="rotate(0,20,20)" fill="rgba(230,224,243,0.15)"/><ellipse cx="20" cy="10" rx="3.5" ry="9" transform="rotate(45,20,20)" fill="rgba(240,212,216,0.1)"/><ellipse cx="20" cy="10" rx="3.5" ry="9" transform="rotate(90,20,20)" fill="rgba(230,224,243,0.15)"/><ellipse cx="20" cy="10" rx="3.5" ry="9" transform="rotate(135,20,20)" fill="rgba(240,212,216,0.1)"/><ellipse cx="20" cy="10" rx="3.5" ry="9" transform="rotate(180,20,20)" fill="rgba(230,224,243,0.15)"/><ellipse cx="20" cy="10" rx="3.5" ry="9" transform="rotate(225,20,20)" fill="rgba(240,212,216,0.1)"/><ellipse cx="20" cy="10" rx="3.5" ry="9" transform="rotate(270,20,20)" fill="rgba(230,224,243,0.15)"/><ellipse cx="20" cy="10" rx="3.5" ry="9" transform="rotate(315,20,20)" fill="rgba(240,212,216,0.1)"/><circle cx="20" cy="20" r="4.5" fill="rgba(218,165,32,0.2)" stroke="#DAA520"/><path d="M20,25 L20,62" stroke="#5A8A5A"/></g></svg>`,
         `<svg viewBox="0 0 40 70"><g stroke="#B76E79" fill="none" stroke-width="1" stroke-linecap="round"><path d="M20,25 C16,15 12,3 20,0 C28,3 24,15 20,25" fill="rgba(240,212,216,0.15)"/><path d="M20,25 C14,18 6,12 10,4 C16,8 18,15 20,25" fill="rgba(230,224,243,0.1)"/><path d="M20,25 C26,18 34,12 30,4 C24,8 22,15 20,25" fill="rgba(240,212,216,0.15)"/><path d="M20,25 L20,62" stroke="#5A8A5A"/><path d="M20,40 C14,34 8,34 10,38" stroke="#5A8A5A" fill="rgba(143,188,143,0.08)"/></g></svg>`,
         `<svg viewBox="0 0 40 70"><g stroke="#C9A0A0" fill="none" stroke-width="1" stroke-linecap="round"><path d="M20,20 C18,14 14,8 20,5 C26,8 22,14 20,20" fill="rgba(240,212,216,0.15)"/><path d="M20,20 C14,18 8,14 8,20 C8,26 14,22 20,20" fill="rgba(240,212,216,0.15)"/><path d="M20,20 C26,18 32,14 32,20 C32,26 26,22 20,20" fill="rgba(230,224,243,0.15)"/><path d="M20,20 C17,26 14,32 18,34 C22,32 20,26 20,20" fill="rgba(240,212,216,0.15)"/><path d="M20,20 C23,26 26,32 22,34 C18,32 20,26 20,20" fill="rgba(230,224,243,0.15)"/><circle cx="20" cy="20" r="2.5" fill="rgba(218,165,32,0.25)" stroke="#DAA520" stroke-width="0.6"/><path d="M20,26 L20,62" stroke="#5A8A5A"/></g></svg>`
@@ -594,47 +594,171 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============ 🎵 AMBIENT MUSIC TOGGLE ============
     const musicToggle = document.getElementById('music-toggle');
     if (musicToggle) {
-        let audioCtx, oscillator, gainNode, isPlaying = false;
+        let audioCtx, masterGain, isPlaying = false, melodyTimeout = null;
 
-        function createAmbientAudio() {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            // Create a dreamy ambient tone
-            oscillator = audioCtx.createOscillator();
-            gainNode = audioCtx.createGain();
-            const filter = audioCtx.createBiquadFilter();
+        // Note frequencies (Hz)
+        const NOTE = {
+            C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392.00,
+            A4: 440.00, Bb4: 466.16, B4: 493.88,
+            C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99,
+            A3: 220.00, C3: 130.81, E3: 164.81, F3: 174.61, G3: 196.00,
+            Bb3: 233.08, D3: 146.83
+        };
 
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(220, audioCtx.currentTime);
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(400, audioCtx.currentTime);
-            filter.Q.setValueAtTime(5, audioCtx.currentTime);
-            gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+        // Happy Birthday melody: [frequency, duration in beats, rest after in beats]
+        const melody = [
+            // "Happy birthday to you"
+            [NOTE.C4, 0.75], [NOTE.C4, 0.25], [NOTE.D4, 1], [NOTE.C4, 1], [NOTE.F4, 1], [NOTE.E4, 2],
+            // "Happy birthday to you"
+            [NOTE.C4, 0.75], [NOTE.C4, 0.25], [NOTE.D4, 1], [NOTE.C4, 1], [NOTE.G4, 1], [NOTE.F4, 2],
+            // "Happy birthday dear [name]"
+            [NOTE.C4, 0.75], [NOTE.C4, 0.25], [NOTE.C5, 1], [NOTE.A4, 1], [NOTE.F4, 0.75], [NOTE.F4, 0.25], [NOTE.E4, 1], [NOTE.D4, 2],
+            // "Happy birthday to you"
+            [NOTE.Bb4, 0.75], [NOTE.Bb4, 0.25], [NOTE.A4, 1], [NOTE.F4, 1], [NOTE.G4, 1], [NOTE.F4, 2],
+        ];
 
-            oscillator.connect(filter);
-            filter.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.start();
+        // Chord progression (root notes for ambient pad)
+        const chords = [
+            [[NOTE.F3, NOTE.A3, NOTE.C4], 4],  // F major
+            [[NOTE.F3, NOTE.A3, NOTE.C4], 4],  // F major
+            [[NOTE.C3, NOTE.E3, NOTE.G3], 4],  // C major
+            [[NOTE.F3, NOTE.A3, NOTE.C4], 4],  // F major
+            [[NOTE.F3, NOTE.A3, NOTE.C4], 2],  // F
+            [[NOTE.C3, NOTE.E3, NOTE.G3], 2],  // C
+            [[NOTE.F3, NOTE.A3, NOTE.C4], 4],  // F
+            [[NOTE.C3, NOTE.E3, NOTE.G3], 2],  // C
+            [[NOTE.F3, NOTE.A3, NOTE.C4], 2],  // F
+            [[NOTE.F3, NOTE.A3, NOTE.C4], 4],  // F
+            [[NOTE.Bb3, NOTE.D4, NOTE.F4], 2], // Bb
+            [[NOTE.F3, NOTE.A3, NOTE.C4], 2],  // F
+            [[NOTE.C3, NOTE.E3, NOTE.G3], 2],  // C
+            [[NOTE.F3, NOTE.A3, NOTE.C4], 2],  // F
+        ];
 
-            // Slowly modulate frequency for a dreamy feel
-            function modulateFreq() {
-                if (!isPlaying) return;
-                const t = audioCtx.currentTime;
-                oscillator.frequency.setTargetAtTime(200 + Math.sin(t * 0.1) * 40, t, 0.5);
-                requestAnimationFrame(modulateFreq);
+        // Create a simple convolver for reverb
+        function createReverb(ctx, duration, decay) {
+            const sampleRate = ctx.sampleRate;
+            const length = sampleRate * duration;
+            const impulse = ctx.createBuffer(2, length, sampleRate);
+            for (let ch = 0; ch < 2; ch++) {
+                const data = impulse.getChannelData(ch);
+                for (let i = 0; i < length; i++) {
+                    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, decay);
+                }
             }
-            modulateFreq();
+            const convolver = ctx.createConvolver();
+            convolver.buffer = impulse;
+            return convolver;
+        }
+
+        // Play a single music-box note
+        function playNote(freq, startTime, duration, ctx, dest, volume = 0.12) {
+            const osc1 = ctx.createOscillator();
+            const osc2 = ctx.createOscillator();
+            const gain = ctx.createGain();
+
+            // Music box: sine + soft triangle harmonic
+            osc1.type = 'sine';
+            osc1.frequency.value = freq;
+            osc2.type = 'triangle';
+            osc2.frequency.value = freq * 2; // octave harmonic for sparkle
+
+            const gain2 = ctx.createGain();
+            gain2.gain.value = 0.15; // subtle harmonic
+
+            osc1.connect(gain);
+            osc2.connect(gain2);
+            gain2.connect(gain);
+            gain.connect(dest);
+
+            // Envelope: quick attack, gentle decay
+            gain.gain.setValueAtTime(0, startTime);
+            gain.gain.linearRampToValueAtTime(volume, startTime + 0.02);
+            gain.gain.exponentialRampToValueAtTime(volume * 0.6, startTime + duration * 0.3);
+            gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration * 0.95);
+            gain.gain.setValueAtTime(0, startTime + duration);
+
+            osc1.start(startTime);
+            osc1.stop(startTime + duration);
+            osc2.start(startTime);
+            osc2.stop(startTime + duration);
+        }
+
+        // Play a soft ambient pad chord
+        function playPadChord(notes, startTime, duration, ctx, dest) {
+            notes.forEach(freq => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                osc.connect(gain);
+                gain.connect(dest);
+
+                // Soft swell envelope
+                gain.gain.setValueAtTime(0, startTime);
+                gain.gain.linearRampToValueAtTime(0.025, startTime + duration * 0.3);
+                gain.gain.linearRampToValueAtTime(0.02, startTime + duration * 0.7);
+                gain.gain.linearRampToValueAtTime(0, startTime + duration);
+
+                osc.start(startTime);
+                osc.stop(startTime + duration + 0.1);
+            });
+        }
+
+        function playMelody() {
+            if (!isPlaying || !audioCtx) return;
+
+            const tempo = 0.45; // seconds per beat (gentle, slow tempo)
+            let t = audioCtx.currentTime + 0.1;
+
+            // Schedule melody notes
+            melody.forEach(([freq, dur]) => {
+                playNote(freq, t, dur * tempo * 0.9, audioCtx, masterGain);
+                t += dur * tempo;
+            });
+
+            // Schedule pad chords
+            let ct = audioCtx.currentTime + 0.1;
+            chords.forEach(([notes, dur]) => {
+                playPadChord(notes, ct, dur * tempo, audioCtx, masterGain);
+                ct += dur * tempo;
+            });
+
+            // Total melody duration
+            const totalBeats = melody.reduce((sum, [, d]) => sum + d, 0);
+            const totalDuration = totalBeats * tempo;
+
+            // Loop with a gentle pause
+            melodyTimeout = setTimeout(() => {
+                if (isPlaying) playMelody();
+            }, (totalDuration + 1.5) * 1000); // 1.5s pause between loops
         }
 
         musicToggle.addEventListener('click', () => {
             if (!isPlaying) {
-                if (!audioCtx) createAmbientAudio();
-                gainNode.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 1);
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    masterGain = audioCtx.createGain();
+                    const reverb = createReverb(audioCtx, 2.5, 3);
+                    const reverbGain = audioCtx.createGain();
+                    reverbGain.gain.value = 0.4;
+                    masterGain.connect(audioCtx.destination);
+                    masterGain.connect(reverb);
+                    reverb.connect(reverbGain);
+                    reverbGain.connect(audioCtx.destination);
+                    masterGain.gain.value = 0.8;
+                }
+                if (audioCtx.state === 'suspended') audioCtx.resume();
                 isPlaying = true;
                 musicToggle.classList.add('playing');
+                playMelody();
             } else {
-                gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
                 isPlaying = false;
                 musicToggle.classList.remove('playing');
+                if (melodyTimeout) clearTimeout(melodyTimeout);
+                // Fade out gracefully
+                masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
+                setTimeout(() => { if (!isPlaying) masterGain.gain.value = 0.8; }, 600);
             }
         });
     }
