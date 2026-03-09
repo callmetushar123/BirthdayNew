@@ -734,33 +734,50 @@ document.addEventListener('DOMContentLoaded', () => {
             }, (totalDuration + 1.5) * 1000); // 1.5s pause between loops
         }
 
-        musicToggle.addEventListener('click', () => {
-            if (!isPlaying) {
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    masterGain = audioCtx.createGain();
-                    const reverb = createReverb(audioCtx, 2.5, 3);
-                    const reverbGain = audioCtx.createGain();
-                    reverbGain.gain.value = 0.4;
-                    masterGain.connect(audioCtx.destination);
-                    masterGain.connect(reverb);
-                    reverb.connect(reverbGain);
-                    reverbGain.connect(audioCtx.destination);
-                    masterGain.gain.value = 0.8;
-                }
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                isPlaying = true;
-                musicToggle.classList.add('playing');
-                playMelody();
-            } else {
-                isPlaying = false;
-                musicToggle.classList.remove('playing');
-                if (melodyTimeout) clearTimeout(melodyTimeout);
-                // Fade out gracefully
-                masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
-                setTimeout(() => { if (!isPlaying) masterGain.gain.value = 0.8; }, 600);
+        function startMusic() {
+            if (isPlaying) return;
+            if (!audioCtx || audioCtx.state === 'closed') {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                masterGain = audioCtx.createGain();
+                const reverb = createReverb(audioCtx, 2.5, 3);
+                const reverbGain = audioCtx.createGain();
+                reverbGain.gain.value = 0.4;
+                masterGain.connect(audioCtx.destination);
+                masterGain.connect(reverb);
+                reverb.connect(reverbGain);
+                reverbGain.connect(audioCtx.destination);
+                masterGain.gain.value = 0.8;
             }
-        });
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            isPlaying = true;
+            musicToggle.classList.add('playing');
+            playMelody();
+        }
+
+        function stopMusic() {
+            if (!isPlaying) return;
+            isPlaying = false;
+            musicToggle.classList.remove('playing');
+            if (melodyTimeout) { clearTimeout(melodyTimeout); melodyTimeout = null; }
+            // Close the audio context to stop all scheduled sounds immediately
+            if (audioCtx) {
+                audioCtx.close();
+                audioCtx = null;
+                masterGain = null;
+            }
+        }
+
+        function toggleMusic(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (isPlaying) {
+                stopMusic();
+            } else {
+                startMusic();
+            }
+        }
+
+        musicToggle.addEventListener('click', toggleMusic);
     }
 
     // ============ 🌸 LOVE GARDEN QUIZ ============
