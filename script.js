@@ -1047,4 +1047,172 @@ document.addEventListener('DOMContentLoaded', () => {
     // Second rabbit after 6 seconds
     setTimeout(spawnRabbit, 6000);
 
+    // ============ 🐕 TROTTING DOGS ============
+    const dogSVGs = [
+        // Golden retriever facing right
+        `<svg viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.35">
+                <ellipse cx="28" cy="22" rx="16" ry="9" fill="#D4B87A" stroke="#B89B5E" stroke-width="0.8"/>
+                <circle cx="40" cy="17" r="6" fill="#D4B87A" stroke="#B89B5E" stroke-width="0.8"/>
+                <ellipse cx="43" cy="13" rx="3" ry="2.5" fill="#C8A86A" stroke="#B89B5E" stroke-width="0.6"/>
+                <ellipse cx="37" cy="13" rx="3" ry="2.5" fill="#C8A86A" stroke="#B89B5E" stroke-width="0.6"/>
+                <circle cx="42" cy="16" r="1.2" fill="#5A3D2A"/>
+                <ellipse cx="44.5" cy="18" rx="1.5" ry="1" fill="#3D2B1A"/>
+                <ellipse cx="10" cy="22" rx="5" ry="2" fill="#D4B87A" stroke="#B89B5E" stroke-width="0.6"/>
+                <line x1="22" y1="28" x2="22" y2="34" stroke="#B89B5E" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="26" y1="28" x2="26" y2="34" stroke="#B89B5E" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="32" y1="28" x2="32" y2="34" stroke="#B89B5E" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="36" y1="28" x2="35" y2="34" stroke="#B89B5E" stroke-width="1.2" stroke-linecap="round"/>
+            </g>
+        </svg>`,
+        // Brown puppy facing left
+        `<svg viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.32">
+                <ellipse cx="24" cy="20" rx="13" ry="7.5" fill="#A0785A" stroke="#8B6348" stroke-width="0.8"/>
+                <circle cx="12" cy="15" r="5.5" fill="#A0785A" stroke="#8B6348" stroke-width="0.8"/>
+                <ellipse cx="8" cy="12" rx="3.5" ry="3" fill="#8B6348" stroke="#7A5640" stroke-width="0.6"/>
+                <ellipse cx="15" cy="12" rx="3.5" ry="3" fill="#8B6348" stroke="#7A5640" stroke-width="0.6"/>
+                <circle cx="10" cy="14.5" r="1" fill="#3D2B1A"/>
+                <ellipse cx="8" cy="16.5" rx="1.5" ry="1" fill="#3D2B1A"/>
+                <ellipse cx="38" cy="20" rx="4" ry="1.8" fill="#A0785A" stroke="#8B6348" stroke-width="0.6"/>
+                <line x1="18" y1="25" x2="18" y2="30" stroke="#8B6348" stroke-width="1" stroke-linecap="round"/>
+                <line x1="22" y1="25" x2="22" y2="30" stroke="#8B6348" stroke-width="1" stroke-linecap="round"/>
+                <line x1="28" y1="25" x2="28" y2="30" stroke="#8B6348" stroke-width="1" stroke-linecap="round"/>
+                <line x1="31" y1="25" x2="31" y2="30" stroke="#8B6348" stroke-width="1" stroke-linecap="round"/>
+            </g>
+        </svg>`,
+        // White puppy facing right
+        `<svg viewBox="0 0 44 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.3">
+                <ellipse cx="22" cy="18" rx="12" ry="7" fill="#F0E6D8" stroke="#D4C8B4" stroke-width="0.8"/>
+                <circle cx="31" cy="13" r="5" fill="#F0E6D8" stroke="#D4C8B4" stroke-width="0.8"/>
+                <ellipse cx="34" cy="9.5" rx="2.8" ry="2.5" fill="#E8DCD0" stroke="#D4C8B4" stroke-width="0.6"/>
+                <ellipse cx="28.5" cy="9.5" rx="2.8" ry="2.5" fill="#E8DCD0" stroke="#D4C8B4" stroke-width="0.6"/>
+                <circle cx="33" cy="12.5" r="1" fill="#5A3D2A"/>
+                <ellipse cx="35" cy="14.5" rx="1.2" ry="0.8" fill="#B8877D"/>
+                <ellipse cx="10" cy="18" rx="4" ry="1.5" fill="#F0E6D8" stroke="#D4C8B4" stroke-width="0.6"/>
+                <line x1="16" y1="23" x2="16" y2="28" stroke="#D4C8B4" stroke-width="1" stroke-linecap="round"/>
+                <line x1="20" y1="23" x2="20" y2="28" stroke="#D4C8B4" stroke-width="1" stroke-linecap="round"/>
+                <line x1="26" y1="23" x2="26" y2="28" stroke="#D4C8B4" stroke-width="1" stroke-linecap="round"/>
+                <line x1="29" y1="23" x2="28" y2="28" stroke="#D4C8B4" stroke-width="1" stroke-linecap="round"/>
+            </g>
+        </svg>`
+    ];
+
+    function spawnDog() {
+        const dog = document.createElement('div');
+        dog.className = 'hopping-rabbit'; // reuse same animation classes
+
+        const goingRight = Math.random() > 0.5;
+        const svgIndex = goingRight ? (Math.random() > 0.5 ? 0 : 2) : 1;
+        dog.innerHTML = dogSVGs[svgIndex];
+
+        const size = 36 + Math.random() * 22;
+        const topPos = 45 + Math.random() * 45;
+        const duration = 10 + Math.random() * 6;
+        const hopHeight = 5 + Math.random() * 8;
+
+        dog.style.cssText = `
+            width: ${size}px;
+            top: ${topPos}%;
+            --hop-height: ${hopHeight}px;
+            animation-duration: ${duration}s;
+        `;
+
+        if (goingRight) {
+            dog.classList.add('hop-right');
+        } else {
+            dog.classList.add('hop-left');
+        }
+
+        document.body.appendChild(dog);
+        setTimeout(() => dog.remove(), duration * 1000 + 500);
+    }
+
+    // Spawn dogs periodically (offset from rabbits)
+    setInterval(spawnDog, 9000 + Math.random() * 6000);
+    // First dog after 5 seconds
+    setTimeout(spawnDog, 5000);
+    // Second dog after 10 seconds
+    setTimeout(spawnDog, 10000);
+
+    // ============ 🌸 FLOATING FLOWER PETALS ============
+    const petalSVGs = [
+        // Cherry blossom petal (pink)
+        `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10,2 C12,6 16,8 14,12 C12,16 8,16 6,12 C4,8 8,6 10,2Z" fill="rgba(240,180,190,0.6)" stroke="rgba(200,140,155,0.3)" stroke-width="0.5"/>
+        </svg>`,
+        // Cherry blossom petal (mauve)
+        `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10,2 C12,6 16,8 14,12 C12,16 8,16 6,12 C4,8 8,6 10,2Z" fill="rgba(200,170,210,0.5)" stroke="rgba(170,140,185,0.3)" stroke-width="0.5"/>
+        </svg>`,
+        // Small 5-petal flower (pink)
+        `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.55">
+                <circle cx="10" cy="7" r="3" fill="#F0B4BE"/>
+                <circle cx="13.5" cy="9.5" r="3" fill="#F0B4BE"/>
+                <circle cx="12" cy="13.5" r="3" fill="#F0B4BE"/>
+                <circle cx="8" cy="13.5" r="3" fill="#F0B4BE"/>
+                <circle cx="6.5" cy="9.5" r="3" fill="#F0B4BE"/>
+                <circle cx="10" cy="10.5" r="2" fill="#F5D0D6"/>
+            </g>
+        </svg>`,
+        // Rose petal (coral)
+        `<svg viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9,1 C14,4 16,10 14,16 C12,20 6,20 4,16 C2,10 4,4 9,1Z" fill="rgba(230,160,160,0.5)" stroke="rgba(200,130,135,0.25)" stroke-width="0.5"/>
+        </svg>`,
+        // Small 5-petal flower (lavender)
+        `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.45">
+                <circle cx="10" cy="7" r="3" fill="#C9B1D9"/>
+                <circle cx="13.5" cy="9.5" r="3" fill="#C9B1D9"/>
+                <circle cx="12" cy="13.5" r="3" fill="#C9B1D9"/>
+                <circle cx="8" cy="13.5" r="3" fill="#C9B1D9"/>
+                <circle cx="6.5" cy="9.5" r="3" fill="#C9B1D9"/>
+                <circle cx="10" cy="10.5" r="2" fill="#E0D4EA"/>
+            </g>
+        </svg>`,
+        // Daisy petal (white)
+        `<svg viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8,1 C11,5 13,9 11,14 C9,18 7,18 5,14 C3,9 5,5 8,1Z" fill="rgba(255,250,240,0.6)" stroke="rgba(210,200,180,0.3)" stroke-width="0.5"/>
+        </svg>`,
+        // Cherry blossom petal (light pink)
+        `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10,2 C12,6 16,8 14,12 C12,16 8,16 6,12 C4,8 8,6 10,2Z" fill="rgba(255,200,210,0.55)" stroke="rgba(220,170,180,0.25)" stroke-width="0.5"/>
+        </svg>`
+    ];
+
+    function spawnPetal() {
+        const petal = document.createElement('div');
+        petal.className = 'falling-petal';
+        petal.innerHTML = petalSVGs[Math.floor(Math.random() * petalSVGs.length)];
+
+        const size = 12 + Math.random() * 18;
+        const startX = Math.random() * 100;
+        const duration = 8 + Math.random() * 8;
+        const swayAmount = 40 + Math.random() * 80;
+        const rotation = Math.random() * 360;
+        const delay = Math.random() * 0.5;
+
+        petal.style.cssText = `
+            left: ${startX}vw;
+            width: ${size}px;
+            height: ${size}px;
+            --sway-amount: ${swayAmount}px;
+            --rotation: ${rotation}deg;
+            animation: petalFall ${duration}s ease-in-out ${delay}s forwards;
+            transform: rotate(${rotation}deg);
+        `;
+
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), (duration + delay) * 1000 + 200);
+    }
+
+    // Spawn petals continuously
+    setInterval(spawnPetal, 2000 + Math.random() * 1500);
+    // Initial burst of petals
+    for (let i = 0; i < 6; i++) {
+        setTimeout(spawnPetal, 500 + i * 800);
+    }
+
 });
